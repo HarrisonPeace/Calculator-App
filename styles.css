@@ -1,7 +1,65 @@
 .attribution { 
-  font-size: 11px; 
-  text-align: center; 
+  font-size: 11px;
+  text-align: center;
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
 }
 .attribution a { 
   color: hsl(228, 45%, 44%); 
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  margin-right: auto;
+}
+
+.theme-controls-container  {
+  position: relative;
+}
+
+.theme-controls-container label {
+  position: absolute;
+  top: -16px;
+}
+
+.theme-controls-container label[for="theme-1"] {
+  left: 7px;
+}
+
+.theme-controls-container label[for="theme-2"] {
+  left: 33px;
+}
+
+.theme-controls-container label[for="theme-3"] {
+  left: 58px;
+}
+
+.screen-container {
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.main-calculator-container {
+  display: grid;
+  grid-template-columns: repeat(4,70px);
+  justify-content: center;
+  grid-gap: 10px;
+}
+
+.main-calculator-container span:nth-last-child(-1n+2) {
+  grid-column-end: span 2;
+}
+
+.main-calculator-container span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
 }
