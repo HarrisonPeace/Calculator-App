@@ -1,6 +1,10 @@
 /*==========================================================================
 -----------------------    Changing Theme Colors   -------------------------
 ============================================================================*/
+
+const root = document.documentElement
+const themeControlsContainer = document.querySelector('.theme-controls-container')
+
 let colorSchemes = {
   theme1: `
     --main-background: hsl(222, 26%, 31%);
@@ -48,13 +52,26 @@ let colorSchemes = {
   --text-headers: hsl(52, 100%, 62%);`,
 }
 
-const themeControlsContainer = document.querySelector('.theme-controls-container')
+//checked for saved theme in local storage
+let savedTheme = localStorage.getItem('theme')
 
+if(savedTheme) { //if saved theme apply colors
+  root.style.cssText = colorSchemes[savedTheme];
+  document.getElementById(`${savedTheme}`).checked = true;
+} else { //set color theme to browser settings
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.style.cssText = colorSchemes.theme3
+    document.getElementById('theme3').checked = true;
+  } else {
+    root.style.cssText = colorSchemes.theme2
+    document.getElementById('theme2').checked = true;
+  }
+}
+
+//Change theme colors on click
 themeControlsContainer.addEventListener('click', (e) => {
-  const root = document.documentElement
-  if(e.target.id === "theme-1") root.style.cssText = colorSchemes.theme1
-  if(e.target.id === "theme-2") root.style.cssText = colorSchemes.theme2
-  if(e.target.id === "theme-3") root.style.cssText = colorSchemes.theme3
+  root.style.cssText = colorSchemes[e.target.id]; 
+  localStorage.setItem('theme', `${e.target.id}`);
 })
 
 /*==========================================================================
@@ -69,10 +86,6 @@ let currentArithmetic = null;
 
 calculatorButtonsContainer.addEventListener('click', (e) => {
   let click = e.target.innerHTML //get current button clicked
-
-  // if(screen.offsetWidth + 25 > screenContainer.offsetWidth - 50) {
-  //   return;
-  // }
 
     /**
    * @description  Take current number on screen and do selected arithmetic

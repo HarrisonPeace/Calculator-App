@@ -22,6 +22,7 @@
 /*---- Global Styles ----*/
 * {
   box-sizing: border-box;
+  transition: color 0.4s, background-color 0.4s;
 }
 
 body {
@@ -91,15 +92,15 @@ header h2 {
   cursor: pointer;
 }
 
-.theme-controls-container label[for="theme-1"] {
+.theme-controls-container label[for="theme1"] {
   left: 5px;
 }
 
-.theme-controls-container label[for="theme-2"] {
+.theme-controls-container label[for="theme2"] {
   left: 29px;
 }
 
-.theme-controls-container label[for="theme-3"] {
+.theme-controls-container label[for="theme3"] {
   left: 55px;
 }
 
@@ -121,11 +122,11 @@ header h2 {
   transition: 0.4s;
 }
 
-#theme-2:checked ~ .slider:before {
+#theme2:checked ~ .slider:before {
   left: 30px;
 }
 
-#theme-3:checked + .slider:before {
+#theme3:checked + .slider:before {
   left: 55px;
 }
 
