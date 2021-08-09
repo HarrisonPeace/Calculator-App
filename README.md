@@ -54,9 +54,10 @@ Using the same name for color themes in both the JavaScript and HTML I was able 
 themeControlsContainer.addEventListener('click', (e) => {
   root.style.cssText = colorSchemes[e.target.id]; 
   localStorage.setItem('theme', `${e.target.id}`);
+}
 ```
 
-Using ```js document.documentElement.style.cssText = "INSERT CSS STYLES"``` to select the root element and update its CSS made updating the color scheme intuitive and easy to execute.
+Using ```document.documentElement.style.cssText = "INSERT CSS STYLES"``` to select the root element and update its CSS made updating the color scheme intuitive and easy to execute.
 
 ### Useful resources
 
