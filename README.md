@@ -31,7 +31,6 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/HarrisonPeace/Calculator-App](https://github.com/HarrisonPeace/Calculator-App)
 - Live Site URL: [https://harrisonpeace.com/Calculator-App/](https://harrisonpeace.com/Calculator-App/)
 
 ## My process
