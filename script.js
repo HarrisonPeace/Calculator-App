@@ -2,8 +2,10 @@
 -----------------------    Changing Theme Colors   -------------------------
 ============================================================================*/
 
-const root = document.documentElement
-const themeControlsContainer = document.querySelector('.theme-controls-container')
+const root = document.documentElement;
+const themeControlsContainer = document.querySelector(
+  ".theme-controls-container"
+);
 
 let colorSchemes = {
   theme1: `
@@ -50,103 +52,99 @@ let colorSchemes = {
   --text-other: #fff;
   --text-equals: hsl(198, 20%, 13%);
   --text-headers: hsl(52, 100%, 62%);`,
-}
+};
 
 //checked for saved theme in local storage
-let savedTheme = localStorage.getItem('theme')
+let savedTheme = localStorage.getItem("theme");
 
-if(savedTheme) { //if saved theme apply colors
+if (savedTheme) {
+  //if saved theme apply colors
   root.style.cssText = colorSchemes[savedTheme];
   document.getElementById(`${savedTheme}`).checked = true;
-} else { //set color theme to browser settings
-  if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    root.style.cssText = colorSchemes.theme3
-    document.getElementById('theme3').checked = true;
+} else {
+  //set color theme to browser settings
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    root.style.cssText = colorSchemes.theme3;
+    document.getElementById("theme3").checked = true;
   } else {
-    root.style.cssText = colorSchemes.theme2
-    document.getElementById('theme2').checked = true;
+    root.style.cssText = colorSchemes.theme2;
+    document.getElementById("theme2").checked = true;
   }
 }
 
 //Change theme colors on click
-themeControlsContainer.addEventListener('click', (e) => {
-  root.style.cssText = colorSchemes[e.target.id]; 
-  localStorage.setItem('theme', `${e.target.id}`);
-})
+themeControlsContainer.addEventListener("click", (e) => {
+  root.style.cssText = colorSchemes[e.target.id];
+  localStorage.setItem("theme", `${e.target.id}`);
+});
 
 /*==========================================================================
 ------------------------    Calculator Workings  ---------------------------
 ============================================================================*/
-const screen = document.querySelector('.screen-container span')
-const screenContainer = document.querySelector('.screen-container')
-const calculatorButtonsContainer = document.querySelector('.main-calculator-container')
+const screen = document.querySelector(".screen-container span");
+const screenContainer = document.querySelector(".screen-container");
+const calculatorButtonsContainer = document.querySelector(
+  ".main-calculator-container"
+);
 
 let currentSum = 0;
 let currentArithmetic = null;
 
-calculatorButtonsContainer.addEventListener('click', (e) => {
-  let click = e.target.innerHTML //get current button clicked
+calculatorButtonsContainer.addEventListener("click", (e) => {
+  let click = e.target.innerHTML; //get current button clicked
 
-    /**
+  /**
    * @description  Take current number on screen and do selected arithmetic
    * @Param screen.innerHTML = number currently shown on calculator screen
    */
   const doArithmetic = () => {
-    let number = parseFloat(screen.innerHTML)
+    let number = parseFloat(screen.innerHTML);
     switch (currentArithmetic) {
-      case '+': 
+      case "+":
         currentSum += number;
-        break
-      case '-':
+        break;
+      case "-":
         currentSum -= number;
-        break
-      case 'x':
+        break;
+      case "x":
         currentSum = number * currentSum;
-        break
-      case '/':
-        currentSum = currentSum / number; 
-        break
+        break;
+      case "/":
+        currentSum = currentSum / number;
+        break;
       default:
-        if(currentSum === 0) currentSum += number; //if first number entered into calculator add to currentSum
-        break
-    };
-  }
-
-  if(/^\d$/.test(click)) { //test for digit
-    if(screen.innerHTML === '0') {
-     screen.innerHTML = click;
-    } else {
-     screen.innerHTML = screen.innerHTML.concat(click);
+        if (currentSum === 0) currentSum += number; //if first number entered into calculator add to currentSum
+        break;
     }
-  } 
-  
-  else if(click === '.') {
-   screen.innerHTML = screen.innerHTML.concat(click);
-  }
+  };
 
-  else if(click === '=') {
-    doArithmetic()
+  if (/^\d$/.test(click)) {
+    //test for digit
+    if (screen.innerHTML === "0") {
+      screen.innerHTML = click;
+    } else {
+      screen.innerHTML = screen.innerHTML.concat(click);
+    }
+  } else if (click === ".") {
+    screen.innerHTML = screen.innerHTML.concat(click);
+  } else if (click === "=") {
+    doArithmetic();
     currentArithmetic = null;
-   screen.innerHTML = currentSum;
-  }
-
-  else if(click === 'DEL') {
-    if(screen.innerHTML.length <= 1) {
-     screen.innerHTML = 0
+    screen.innerHTML = currentSum;
+  } else if (click === "DEL") {
+    if (screen.innerHTML.length <= 1) {
+      screen.innerHTML = 0;
     } else {
-     screen.innerHTML = screen.innerHTML.slice(0, -1);
+      screen.innerHTML = screen.innerHTML.slice(0, -1);
     }
-  }
-
-  else if(click === 'RESET') {
+  } else if (click === "RESET") {
     currentArithmetic = null;
     currentSum = 0;
-   screen.innerHTML = 0;
-  }
-
-  else if(click.length === 1) { //only run if click occurs on button
-    doArithmetic()
+    screen.innerHTML = 0;
+  } else if (click.length === 1) {
+    //only run if click occurs on button
+    doArithmetic();
     currentArithmetic = click;
-   screen.innerHTML = 0;
+    screen.innerHTML = 0;
   }
-})
+});
