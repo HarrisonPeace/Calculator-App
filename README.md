@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [https://harrisonpeace.com/Calculator-App/](https://harrisonpeace.com/Calculator-App/)
+- Live Site URL: [https://harrisonpeace.com/responsive-calculator-app-using-vanilla-javascript-flexbox-css-grid/](https://harrisonpeace.com/responsive-calculator-app-using-vanilla-javascript-flexbox-css-grid/)
 
 ## My process
 
